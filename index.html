@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="theme-color" content="#3888fd">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1" />
+    <title>test</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            font-family: "PingFang SC", Helvetica, Tahoma, Arial, "Hiragino Sans GB", "Heiti SC", STXihei, "Microsoft YaHei", SimHei, "WenQuanYi Micro Hei";
+        }
+        html,body{
+            background-color: #f4f4f6;
+        }
+        img{
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        .header{
+            position: fixed;
+            display: flex;
+            width: 100%;
+            z-index: 999;
+        }
+        .content{
+            position: relative;
+            width: 100%;
+            z-index: 1;
+        }
+        .cover-a {
+            position: absolute;
+            top: 10%;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3%;
+            width: 32%;
+            z-index: 2;
+        }
+        .cover-b {
+            position: absolute;
+            top: 19%;
+            bottom: 0;
+            left: 0%;
+            right: 0;
+            height: 40%;
+            width: 100%;
+            z-index: 3;
+        }
+        .before-pid{
+            position: absolute;
+            top: 10.8%;
+            left: 19.7%;
+            font-size: 3.2vw;
+            color: #d6e7fe;
+            user-select: none;
+        }
+        .pid{
+            position: absolute;
+            top: 10.8%;
+            left: 32.9%;
+            font-size: 3.2vw;
+            color: #d6e7fe;
+        }
+        .place{
+            position: absolute;
+            top: 15.9%;
+            left: 0%;
+            width: 100%;
+            font-size: 5.9vw;
+            color: #000;
+            font-weight: 700;
+            text-align: center;
+        }
+        .date{
+            position: absolute;
+            top: 19.8%;
+            left: 0%;
+            width: 100%;
+            font-size: 0vw;
+            text-align: center;
+        }
+        .name{
+            font-size: 3.7vw;
+            color: #999999;
+            font-family: Arial;
+            user-select: none;
+        }
+        #before-sec{
+            font-size: 4vw;
+            color: #999999;
+            font-family: Arial;
+            user-select: none;
+        }
+        #sec{
+            font-size: 4vw;
+            color: #999999;
+            font-family: Arial;
+            font-weight: 700;
+            user-select: none;
+        }
+        #test{
+            position: absolute;
+            top: 53.3%;
+            left: 10.6%;
+            width: 39.6%;
+            color: #fff;
+            font-weight: 300;
+            font-size: 3.2vw;
+            text-align: center;
+            user-select: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <img src="./empty/head.png" />
+    </header>
+    <div class="content">
+        <img src="./empty/content.png" />
+        <div class="cover-a"></div>
+        <div
+        class="cover-b"
+        ></div>
+        <div class="text">
+            <span class="before-pid">场所ID：</span>
+            <span contenteditable="true" class="pid">12**906</span>
+            <span contenteditable="true" class="place">5号线翻身地铁站</span>
+            <div class="date">
+                <span class="name">秦*瑞 </span>
+                <span id="before-sec">2020-07-15 12:54</span>
+            </div>
+            <span id="test"></span>
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript">
+    function showDate(){
+        var d = new Date();
+        var month = ((d.getMonth() + 1) < 10) ? ("0" + (d.getMonth() + 1)) : (d.getMonth() + 1);
+        var date = (d.getDate() < 10) ? ("0" + d.getDate()) : d.getDate();
+        var hour = (d.getHours() < 10) ? ("0" + d.getHours()) : d.getHours();
+        var min = (d.getMinutes() < 10) ? ("0" + d.getMinutes()) : d.getMinutes();
+        var sec = (d.getSeconds() < 10) ? ("0" + d.getSeconds()) : d.getSeconds();
+        document.getElementById("before-sec").innerHTML = (d.getFullYear() + "-" + month + "-" + date + " " + hour + ":" + min);
+    }
+    function showSec(){
+        var d = new Date();
+        var month = ((d.getMonth() + 1) < 10) ? ("0" + (d.getMonth() + 1)) : (d.getMonth() + 1);
+        var date = (d.getDate() < 10) ? ("0" + d.getDate()) : d.getDate();
+        var hour = (d.getHours() < 10) ? ("0" + d.getHours()) : d.getHours();
+        var min = (d.getMinutes() < 10) ? ("0" + d.getMinutes()) : d.getMinutes();
+        var sec = (d.getSeconds() < 10) ? ("0" + d.getSeconds()) : d.getSeconds();
+        document.getElementById("sec").innerHTML = (sec);
+    }
+    function showTest(){
+        var d = new Date();
+        d.setTime(d.getTime()-24*60*60*1000-17*60*1000);
+        var month = ((d.getMonth() + 1) < 10) ? ("0" + (d.getMonth() + 1)) : (d.getMonth() + 1);
+        var date = (d.getDate() < 10) ? ("0" + d.getDate()) : d.getDate();
+        var hour = (d.getHours() < 10) ? ("0" + d.getHours()) : d.getHours();
+        var min = (date < 7) ? (date + 53) : (date * 2 - 13);
+        min = (min < 10) ? ("0" + min) : min;
+        document.getElementById("test").innerHTML = (d.getFullYear() + "-" + month + "-" + date + " " + 12 + ":" + min);
+    }
+    showTest()
+    setInterval(showDate, 1000)
+    setInterval(showSec, 1000)
+</script>
+</html>
