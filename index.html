@@ -91,6 +91,7 @@
             color: #000;
             font-weight: 700;
             text-align: center;
+            user-select: none;
         }
         .date{
             position: absolute;
@@ -175,9 +176,7 @@
         <div
         class="cover-b"
         ></div>
-        <div id="player"
-        onclick="player()"
-        ></div>
+        <div id="player" onclick="player()"></div>
         <div class="rocket-a">
             <img src="./empty/floating.png" />
         </div>
@@ -186,8 +185,8 @@
         </div>
         <div class="text">
             <span class="before-pid">&#x573a&#x6240&#x0049&#x0044</span>
-            <span contenteditable="true" class="pid">12**906</span>
-            <span contenteditable="true" class="place" id="place">&#x0035&#x53f7&#x7ebf&#x7ffb&#x8eab&#x7ad9</span>
+            <span class="pid" contenteditable="true">12**906</span>
+            <span class="place" id="place" onclick="fillPlace()">&#x0035&#x53f7&#x7ebf&#x7ffb&#x8eab&#x7ad9</span>
             <div class="date">
                 <span class="name">&#x80e1&#x002a </span>
                 <span id="before-sec">2023-07-15 12:54</span>
@@ -209,15 +208,7 @@
         let min = (d.getMinutes() < 10) ? ("0" + d.getMinutes()) : d.getMinutes();
         let sec = (d.getSeconds() < 10) ? ("0" + d.getSeconds()) : d.getSeconds();
         document.getElementById("before-sec").innerHTML = (d.getFullYear() + "-" + month + "-" + date + " " + hour + ":" + min);
-    }
-    function showSec(){
-        let d = new Date();
-        let month = ((d.getMonth() + 1) < 10) ? ("0" + (d.getMonth() + 1)) : (d.getMonth() + 1);
-        let date = (d.getDate() < 10) ? ("0" + d.getDate()) : d.getDate();
-        let hour = (d.getHours() < 10) ? ("0" + d.getHours()) : d.getHours();
-        let min = (d.getMinutes() < 10) ? ("0" + d.getMinutes()) : d.getMinutes();
-        let sec = (d.getSeconds() < 10) ? ("0" + d.getSeconds()) : d.getSeconds();
-        document.getElementById("sec").innerHTML = (sec);
+        // document.getElementById("sec").innerHTML = (sec);
     }
     function showTest(){
         let d = new Date();
@@ -246,12 +237,24 @@
                 break;
         }
     }
-    let startingLine = 500;
+    function fillPlace(){
+        const newPlace = window.prompt("The name of place:");
+        if (newPlace){
+            document.getElementById("place").innerHTML = newPlace;       
+        }
+    }
+    
+    window.onload = starts
+    showTest()
+    showDate()
+    // setInterval(showDate, 1000)
+
+    let startingLine = 50;
     const content = document.querySelector('.content');
     content.addEventListener('touchmove', function (e) {
         let scrollTop = document.body.scrollTop+document.documentElement.scrollTop;
         if (scrollTop < (startingLine-2)) {
-        //e.preventDefault();
+        // e.preventDefault();
         }
     })
     content.addEventListener('touchend', function (e) {
@@ -260,13 +263,8 @@
         window.scrollTo({
             top: startingLine,
             behavior: "smooth"
-        });
+        }); 
         }
     })
-
-    window.onload = starts
-    showTest()
-    setInterval(showDate, 1000)
-    setInterval(showSec, 1000)
 </script>
 </html>
