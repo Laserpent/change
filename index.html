@@ -57,6 +57,19 @@
             width: 100%;
             z-index: 3;
         }
+        .cover-rm {
+            position: absolute;
+            top: 50%;
+            bottom: 0;
+            left: 90%;
+            height: 8%;
+            width: 10%;
+            z-index: 10;
+        }
+        .rm {
+            display: inline;
+            position: absolute;
+        }
         #player{
             position: absolute;
             top: 30%;
@@ -172,10 +185,10 @@
         <img src="./empty/head.png" />
     </header>
     <div class="content">
+        <div class="cover-rm" onclick="restore()"></div>
+        <img class="rm" id="rm" src="./empty/removal.webp" />
         <img src="./empty/content.png" />
-        <div
-        class="cover-b"
-        ></div>
+        <div class="cover-b"></div>
         <div id="player" onclick="player()"></div>
         <div class="rocket-a">
             <img src="./empty/floating.png" />
@@ -242,6 +255,16 @@
         if (newPlace){
             document.getElementById("place").innerHTML = newPlace;       
         }
+    }
+    function restore(){
+        if(!this.bool){
+            document.getElementById("rm").style.display = "none";
+            document.getElementById("test").style.display = "inline";
+        }else{
+            document.getElementById("rm").style.display = "inline";
+            document.getElementById("test").style.display = "none";
+        }
+        this.bool = !this.bool;
     }
     
     window.onload = starts
